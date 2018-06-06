@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Gestão de Vinhos</title>
+	<link rel="stylesheet" href="/css/third/semantic.min.css"/>
+	<link rel="stylesheet" href="/css/main.css"/>
+	<link rel="stylesheet" href="/css/login.css"/>
+	<script src="/js/third/jquery.min.js" charset="utf-8"></script>
+	<script src="/js/third/semantic.min.js" charset="utf-8"></script>
+</head>
+<body>
+	<div th:include="fragments/menu"></div>
+	<div class="ui middle aligned center aligned grid">
+		<div class="column">
+			<h2 class="ui header">
+				<div class="content">Login</div>
+			</h2>
+			<div class="ui stacked segment">
+				<form class="ui form" method="POST" action="/login">
+					<div class="field">
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								E-mail:
+							</div>
+							<input type="text" id="username" name="username" placeholder="E-mail de acesso"/>
+							<i class="mail icon"></i>
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								Senha:
+							</div>
+							<input type="password" id="password" name="password" placeholder="Senha de acesso"/>
+							<i class="lock icon"></i>
+						</div>
+					</div>
+					<div class="two fields">
+						<div class="field">
+							<input type="submit" id="login" class="ui fluid blue button" value="Entrar"/>
+						</div>
+						<div class="field">
+							<a class="ui fluid blue basic button" href="/usuario/novo">Novo Usuário</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="ui red message" th:if="${error}"><span th:text="${error}"/></div>
+			<div class="ui green message" th:if="${success}"><span th:text="${success}"/></div>
+		</div>
+	</div>
+	<script src="/js/main.js" charset="utf-8"></script>
+</body>
+</html>

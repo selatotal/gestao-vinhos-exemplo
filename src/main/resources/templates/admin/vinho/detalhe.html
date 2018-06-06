@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Gestão de vinhos - Detalhes do vinho</title>
+	<link rel="stylesheet" href="/css/third/semantic.min.css"/>
+	<link rel="stylesheet" href="/css/main.css"/>
+	<link rel="stylesheet" href="/css/login.css"/>
+	<script src="/js/third/jquery.min.js" charset="utf-8"></script>
+	<script src="/js/third/semantic.min.js" charset="utf-8"></script>
+</head>
+<body>
+<div th:include="fragments/menu"></div>
+<div class="ui container" th:if="${error}">
+	<div class="ui red message transition"><i class="close icon"></i><span th:text="${error}"/></div>
+</div>
+<div class="ui container" th:if="${success}">
+	<div class="ui green message transition"><i class="close icon"></i><span th:text="${success}"/></div>
+</div>
+<div class="ui container detailContainer">
+	<h2 class="ui header">
+		<div class="content">Detalhes do vinho</div>
+	</h2>
+	<div class="ui stacked segments">
+		<div class="ui left aligned segment">
+			<a href="/admin/vinho" class="ui blue basic button">
+				<i class="chevron left icon"></i>
+				Voltar
+			</a>
+		</div>
+		<div class="ui segment">
+			<div class="ui grid">
+				<form class="ui ten wide column form" method="POST" enctype="multipart/form-data" th:object="${wine}" th:action="@{/admin/vinho/{id}(id=${wine.id})}">
+					<div class="field">
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								Nome:
+							</div>
+							<input type="text" id="nome" th:field="*{nome}" placeholder="Nome do vinho" required="required"/>
+							<i class="talk icon"></i>
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								Vinícola:
+							</div>
+							<input type="text" id="vinicola" th:field="*{vinicola}" placeholder="Nome da vinícola" required="required"/>
+							<i class="building icon"></i>
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								Tipo:
+							</div>
+							<select class="ui dropdown fluid" name="idTipo" required="required">
+								<option th:each="type: ${types}" th:value="${type.id}" th:text="${type.descricao}" th:selected="(${type.id} == *{idTipo})" ></option>
+							</select>
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								Imagem:
+							</div>
+							<input type="file" id="imagem" name="imagem" />
+							<i class="file icon"></i>
+						</div>
+					</div>
+					<div class="field">
+						<input type="submit" id="cadastrar" class="ui fluid blue button" value="Alterar"/>
+					</div>
+				</form>
+				<div class="six wide column">
+					<img class="ui image" th:src="@{ /images/{filename}(filename=${wine.nomeImagem}) }"/>
+				</div>
+			</div>
+		</div>
+		<div class="ui container segment" th:if="${avaliations}">
+			<div id="titleContainer" class="ui items">
+				<div class="item">
+					<div class="content">
+						<h2 class="ui header">Avaliações</h2>
+					</div>
+				</div>
+			</div>
+			<div class="ui divider clear"></div>
+			<div class="ui divided items">
+				<div class="item" th:each="avaliation: ${avaliations}">
+					<div class="content">
+						<div class="header">
+							<span th:text="${avaliation.user.name}"></span>
+							<span> - </span>
+							<span th:text="${#dates.format(avaliation.dateTime, 'dd-MM-yyyy')}"></span>
+						</div>
+						<div class="meta" th:text="${avaliation.descricao}"></div>
+					</div>
+					<div class="content">
+						<div class="ui right floated hugeThumbsCount">
+							<i class="green thumbs outline up icon" th:if="${avaliation.positivo}"></i>
+							<i class="red thumbs outline down icon" th:unless="${avaliation.positivo}"></i>
+						</div>
+					</div>
+					<div class="content">
+						<a class="ui right floated red labeled icon tiny button" th:href="@{ /admin/vinho/{vid}/avaliacao/{id}/delete(vid=${wine.id}, id=${avaliation.id}) }">
+							Excluir
+							<i class="trash icon"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/js/main.js" charset="utf-8"></script>
+</body>
+</html>

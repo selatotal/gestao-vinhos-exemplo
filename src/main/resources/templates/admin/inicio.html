@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Gestão de vinhos - Administação</title>
+	<link rel="stylesheet" href="/css/third/semantic.min.css"/>
+	<link rel="stylesheet" href="/css/main.css"/>
+	<link rel="stylesheet" href="/css/login.css"/>
+	<script src="/js/third/jquery.min.js" charset="utf-8"></script>
+	<script src="/js/third/semantic.min.js" charset="utf-8"></script>
+</head>
+<body>
+	<div th:include="fragments/menu"></div>
+	<div class="ui container segment">
+		<div class="ui fluid buttons">
+			<a href="/admin/vinho" class="ui button">Vinhos</a>
+			<div class="or" data-text="ou"></div>
+			<a href="/admin/usuario" class="ui button">Usuários</a>
+		</div>
+	</div>
+	<div class="ui container segment">
+		<div id="titleContainer" class="ui items">
+			<div class="item">
+				<div class="content">
+					<h1 class="ui header">Início</h1>
+				</div>
+			</div>
+		</div>
+		<div class="ui divider clear"></div>
+		<div class="ui center aligned container">
+			<h3>Bem vindo a tela principal de administração do sistema.</h3>
+			<p>Você pode selecionar acima uma das opções de gerenciamento.</p>
+		</div>
+	</div>
+	<script src="/js/main.js" charset="utf-8"></script>
+</body>
+</html>

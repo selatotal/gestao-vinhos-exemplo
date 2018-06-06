@@ -1,0 +1,48 @@
+body {
+	color: #404040;
+	background: #dadada;
+}
+
+.main-menu {
+	background: #0288d1 !important;
+}
+
+.main-menu:after {
+	background: #0288d1 !important;
+}
+
+.ui.inverted.main-menu .dropdown .menu .item {
+	color: white !important;
+}
+
+.ui.inverted.main-menu .dropdown .menu .item:hover {
+	color: white !important
+}
+
+.clear {
+	clear: both;
+}
+
+#header {
+	height: 3em;
+}
+
+#titleContainer {
+	margin-bottom: 15px;
+}
+
+input[type="file"] {
+	padding-left: 0px !important;
+}
+
+.detailContainer {
+	margin-top: 30px;
+}
+
+.thumbsCount {
+	font-size: 20px !important;
+}
+
+.hugeThumbsCount {
+	font-size: 40px !important;
+}

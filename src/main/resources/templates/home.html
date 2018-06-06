@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Gestão de vinhos - Início</title>
+	<link rel="stylesheet" href="/css/third/semantic.min.css"/>
+	<link rel="stylesheet" href="/css/main.css"/>
+	<link rel="stylesheet" href="/css/login.css"/>
+	<script src="/js/third/jquery.min.js" charset="utf-8"></script>
+	<script src="/js/third/semantic.min.js" charset="utf-8"></script>
+</head>
+<body>
+	<div th:include="fragments/menu"></div>
+	<div class="ui container segment">
+		<div class="ui fluid buttons">
+			<a href="/inicio" class="ui disabled button">Início</a>
+			<div class="or" data-text="ou"></div>
+			<a href="/vinhos/minhalista" class="ui button">Minha Lista</a>
+		</div>
+	</div>
+	<div class="ui container" th:if="${error}">
+		<div class="ui red message transition"><i class="close icon"></i><span th:text="${error}"/></div>
+	</div>
+	<div class="ui container" th:if="${success}">
+		<div class="ui green message transition"><i class="close icon"></i><span th:text="${success}"/></div>
+	</div>
+	<div class="ui container segment">
+		<div id="titleContainer" class="ui items">
+			<div class="item">
+				<div class="content">
+					<h1 class="ui header">Lista de Vinhos</h1>
+				</div>
+			</div>
+		</div>
+		<div class="ui divider clear"></div>
+		<div class="ui divided items">
+			<div class="item" th:each="wine: ${wines}">
+				<a class="image" th:href="@{ /vinhos/vinho/{id}(id=${wine.id}) }">
+					<img th:src="@{ /images/{filename}(filename=${wine.nomeImagem}) }"/>
+				</a>
+				<div class="content">
+					<a class="header" th:text="${wine.nome}" th:href="@{ /vinhos/vinho/{id}(id=${wine.id}) }"></a>
+					<div class="meta">
+						<a th:href="@{ /vinhos/vinho/{id}(id=${wine.id}) }" th:text="${wine.vinicola}"></a>
+					</div>
+					<div class="description thumbsCount">
+						<span th:text="${wine.aviliacoesNegativas}">0</span>
+						<i class="red thumbs outline down icon"></i>
+						<span th:text="${wine.aviliacoesPositivas}">0</span>
+						<i class="green thumbs outline up icon"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/main.js" charset="utf-8"></script>
+</body>
+</html>

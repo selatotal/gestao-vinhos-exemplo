@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Gestão de vinhos - Novo vinho</title>
+	<link rel="stylesheet" href="/css/third/semantic.min.css"/>
+	<link rel="stylesheet" href="/css/main.css"/>
+	<link rel="stylesheet" href="/css/login.css"/>
+	<script src="/js/third/jquery.min.js" charset="utf-8"></script>
+	<script src="/js/third/semantic.min.js" charset="utf-8"></script>
+</head>
+<body>
+<div th:include="fragments/menu"></div>
+<div class="ui middle aligned center aligned grid">
+	<div class="column">
+		<h2 class="ui header">
+			<div class="content">Cadastrar vinho</div>
+		</h2>
+		<div class="ui stacked segments">
+			<div class="ui left aligned segment">
+				<a href="/admin/vinho" class="ui blue basic button">
+					<i class="chevron left icon"></i>
+					Voltar
+				</a>
+			</div>
+			<div class="ui segment">
+				<form class="ui form" method="POST" enctype="multipart/form-data" th:object="${wine}" th:action="@{/admin/vinho/novo}">
+					<div class="field">
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								Nome:
+							</div>
+							<input type="text" id="nome" th:field="*{nome}" placeholder="Nome do vinho" required="required"/>
+							<i class="talk icon"></i>
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								Vinícola:
+							</div>
+							<input type="text" id="vinicola" th:field="*{vinicola}" placeholder="Nome da vinícola" required="required"/>
+							<i class="building icon"></i>
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								Tipo:
+							</div>
+							<select name="idTipo" class="ui dropdown fluid" required="required">
+								<option th:each="type: ${types}" th:value="${type.id}" th:text="${type.descricao}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui left labeled right icon input">
+							<div class="ui label">
+								Imagem:
+							</div>
+							<input type="file" name="imagem" required="required"/>
+							<i class="file icon"></i>
+						</div>
+					</div>
+					<div class="field">
+						<input type="submit" id="cadastrar" class="ui fluid blue button" value="Cadastrar"/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="ui red message" th:if="${error}"><span th:text="${error}" /></div>
+	</div>
+</div>
+<script src="/js/main.js" charset="utf-8"></script>
+</body>
+</html>
