@@ -22,3 +22,9 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+### Claude Code ###
+.claude/
+.claude.json
+.claude.json.backup
+CLAUDE.local.md
